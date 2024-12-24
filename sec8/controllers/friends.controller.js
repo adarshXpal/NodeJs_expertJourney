@@ -4,8 +4,8 @@ function postFriends(req,res) {
     return res.status(400).json({error: 'MISSING FRIENDS NAME NIGGA!!'});
   }
   const newfriend = {
-    name: req.body.name,
-    id: model.length
+    id: model.length,
+    name: req.body.name
   };
   model.push(newfriend);
   res.json(newfriend);
