@@ -25,7 +25,19 @@ function addNewLaunch(launch){
     success: true,
   })); 
 }
+function existsLaunchById(launchId){
+  return launches.has(launchId);
+}
+function abortLaunchById(launchId){
+  const aborted = launches.get(launchId);
+  aborted.upcoming = false;
+  aborted.success = false;
+  latestFlightNumber--;
+  return aborted;
+}
 module.exports = {
   getAllLaunches,
   addNewLaunch,
+  existsLaunchById,
+  abortLaunchById,
 };

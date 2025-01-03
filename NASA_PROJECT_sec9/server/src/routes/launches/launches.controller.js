@@ -18,8 +18,19 @@ function httpAddNewLaunch(req,res){
   launchesModel.addNewLaunch(launch);
   res.status(201).json(launch);
 }
+function httpAbortLaunch(req,res){
+  const launchId = Number(req.params.id);
+  if(!launchesModel.existsLaunchById(launchId)){
+    return res.status(404).json({
+      error:'Launch Not Found/',
+    });
+  }
+  const aborted = launchesModel.abortLaunchById(launchId);
+  res.status(200).json(aborted);
+}
 
 module.exports = {
   httpGetAllLaunches,
   httpAddNewLaunch,
+  httpAbortLaunch,
 };
